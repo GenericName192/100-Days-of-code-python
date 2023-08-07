@@ -30,8 +30,12 @@ The computer has a {computerCards[0]} and a face down card""")
                 playerTotal += playerCards[-1]
                 print(f"You drew a {playerCards[-1]}, Your new total is {playerTotal}")
                 if scoreChecker(playerTotal):
-                    print(f"{playerTotal} is over 21 therefore you lose!")
-                    inGame = False
+                    if 11 in playerCards:
+                        playerCards[playerCards.index(11)] = 1
+                        playerTotal = sum(playerCards)
+                        if scoreChecker(playerTotal):
+                            print(f"{playerTotal} is over 21 therefore you lose!")
+                            inGame = False
             else:
                 print(f"The computer has {computerCards} with a total of {computerTotal}")
                 while computerTotal < 17:
@@ -39,8 +43,12 @@ The computer has a {computerCards[0]} and a face down card""")
                     computerCards.append(drawCard())
                     computerTotal += computerCards[-1]
                     if scoreChecker(computerTotal):
-                        print(f"With a total of {computerTotal}, The computer goes bust")
-                        inGame = False
+                        if 11 in computerCards:
+                            computerCards[computerCards.index(11)] = 1
+                            computerTotal = sum(computerCards)
+                            if scoreChecker(computerTotal):
+                                print(f"With a total of {computerTotal}, The computer goes bust")
+                                inGame = False
                         return
                     else:
                         print(f"The dealer draw a {computerCards[-1]}, for a new total of {computerTotal}")
