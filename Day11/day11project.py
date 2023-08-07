@@ -33,9 +33,14 @@ The computer has a {computerCards[0]} and a face down card""")
                     if 11 in playerCards:
                         playerCards[playerCards.index(11)] = 1
                         playerTotal = sum(playerCards)
+                        print(f"Your 11 turns into a 1 your new total is {playerTotal}")
                         if scoreChecker(playerTotal):
                             print(f"{playerTotal} is over 21 therefore you lose!")
                             inGame = False
+                    else:
+                        print(f"{playerTotal} is over 21 therefore you lose!")
+                        inGame = False
+
             else:
                 print(f"The computer has {computerCards} with a total of {computerTotal}")
                 while computerTotal < 17:
@@ -51,7 +56,7 @@ The computer has a {computerCards[0]} and a face down card""")
                                 inGame = False
                         return
                     else:
-                        print(f"The dealer draw a {computerCards[-1]}, for a new total of {computerTotal}")
+                        print(f"The computer draw a {computerCards[-1]}, for a new total of {computerTotal}")
                 print(f"The comptuer sticks with a total of {computerTotal}")
                 if playerTotal == computerTotal:
                     print("The game is a draw")
@@ -84,15 +89,17 @@ def scoreChecker(Score):
         return True
     else:
         return False
-    
-playingGame = True
-while playingGame:
-    playGame()
-    playAgain = input("Would you like to play again? (yes), (no) ")
-    if isValidInput(playAgain, "yes", "no"):
-        if playAgain == "no":
+
+def game(): 
+    """A funection to run the blackjack game and keep it going untill the user ends it"""
+    playingGame = True
+    while playingGame:
+        playGame()
+        playAgain = input("Would you like to play again? (yes), (no) ")
+        if isValidInput(playAgain, "yes", "no"):
+            if playAgain == "no":
+                playingGame = False
+        else:
+            print("Invalid input, ending game")
             playingGame = False
-    else:
-        print("Invalid input, ending game")
-        playingGame = False
-            
+game()              
