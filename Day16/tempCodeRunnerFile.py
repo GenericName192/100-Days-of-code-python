@@ -1,0 +1,1 @@
+isValidInput(choice, "off", "report", "latte", "espresso", "cappuccino")
